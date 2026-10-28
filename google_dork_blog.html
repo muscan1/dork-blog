@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Dorking Blog - CAT 1 Practical</title>
+
+  <!-- This is an internal stylesheet: CSS written directly inside the page
+       instead of a separate style.css file. Useful when a page needs to be
+       submitted as one single file. -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    header {
+      background-color: #1a3c6e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px 30px;
+    }
+
+    .intro {
+      background-color: #eaf1fb;
+      color: #1a3c6e;
+    }
+
+    .lists {
+      background-color: #fffbea;
+      color: #4a3b00;
+    }
+
+    .builder-section {
+      background-color: #f3eefc;
+      color: #3b1f66;
+    }
+
+    .form-section {
+      background-color: #f0fff4;
+      color: #1a3c1a;
+    }
+
+    .info-section {
+      background-color: #fdf0f0;
+      color: #5a1a1a;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    table, th, td {
+      border: 1px solid #999;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    form label,
+    .builder-section label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    form input,
+    .builder-section input {
+      padding: 6px;
+      width: 250px;
+    }
+
+    form select {
+      padding: 6px;
+    }
+
+    form button,
+    .builder-section button {
+      margin-top: 15px;
+      padding: 8px 20px;
+    }
+
+    #result {
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #1a3c6e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header: site heading and navigation links -->
+  <header>
+    <h1>Google Dorking Blog</h1>
+    <nav>
+      <a href="#intro">Home</a>
+      <a href="#lists">Operators</a>
+      <a href="#builder">Dork Builder</a>
+      <a href="#register">Register</a>
+      <a href="#info">Site Info</a>
+    </nav>
+  </header>
+
+  <hr>
+
+  <!-- Section 1: introduction, formatted paragraphs, image, external link -->
+  <section id="intro" class="intro">
+    <h2>Learn to Search Smarter</h2>
+    <p>
+      This blog teaches <strong>Google dorking</strong> — using
+      <em>advanced search operators</em> to find information a normal search
+      misses. It is <u>not</u> about hacking; it is about searching precisely.
+    </p>
+
+    <img src="images/dorks.webp" alt="Google dorking search operators" width="500">
+
+    <p>Read more about search operators on
+      <a href="https://support.google.com/websearch" target="_blank">Google's own search help page</a>.
+    </p>
+  </section>
+
+  <hr>
+
+  <!-- Section 2: ordered and unordered lists -->
+  <section id="lists" class="lists">
+    <h2>Top Google Dork Operators</h2>
+    <ol>
+      <li>site: — search only one website</li>
+      <li>intitle: — search within a page's title</li>
+      <li>filetype: — search for a specific file type</li>
+    </ol>
+
+    <h2>Topics Covered on This Blog</h2>
+    <ul>
+      <li>Search operators</li>
+      <li>Search safety and ethics</li>
+      <li>Practical examples</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- Section 3: dork builder, powered by the external file script.js -->
+  <section id="builder" class="builder-section">
+    <h2>Dork Builder</h2>
+    <p>Fill in one or more boxes, then click the button to build a search query.</p>
+
+    <!-- Input boxes: JavaScript reads these by their id -->
+    <label for="siteInput">Site (for example wikipedia.org):</label>
+    <input type="text" id="SiteInput">
+
+    <label for="fileInput">File type (for example pdf):</label>
+    <input type="text" id="FileInput">
+
+    <label for="keywordInput">Keyword:</label>
+    <input type="text" id="KeywordInput">
+
+    <!-- onclick runs the buildDork function, which lives in script.js -->
+    <button onclick="buildDork()">Build Dork</button>
+
+    <!-- These two paragraphs are placeholders; JavaScript fills them in -->
+    <p id="result">Your query will appear here.</p>
+    <p id="operatorCount"></p>
+  </section>
+
+  <hr>
+
+  <!-- Section 4: registration form. The data is sent to register.php (PHP) -->
+  <section id="register" class="form-section">
+    <h2>Register for Updates</h2>
+    <form action="register.php" method="post">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="level">Experience level:</label>
+      <select id="level" name="level">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Section 5: table of website information -->
+  <section id="info" class="info-section">
+    <h2>Website Information</h2>
+    <table>
+      <tr>
+        <th>Feature</th>
+        <th>Detail</th>
+      </tr>
+      <tr>
+        <td>Site Name</td>
+        <td>Google Dorking Blog</td>
+      </tr>
+      <tr>
+        <td>Launched</td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>Muscan</td>
+      </tr>
+      <tr>
+        <td>Main Topics</td>
+        <td>Search operators, online research skills</td>
+      </tr>
+    </table>
+  </section>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Google Dorking Blog</p>
+  </footer>
+
+  <!-- Link the external JavaScript file. It goes last so the elements above exist first -->
+  <script src="script.js"></script>
+
+</body>
+</html>
